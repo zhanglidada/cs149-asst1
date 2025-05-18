@@ -1,5 +1,17 @@
 CXX=g++ -m64 -march=native
-CXXFLAGS=-I../common -Iobjs/ -O3 -Wall
+
+DEBUG ?= 1
+
+CXXFLAGS=-I../common -Iobjs/ -Wall
+
+# make DEBUG=1 表示编译debug 模式
+ifeq ($(DEBUG), 1)
+	CXXFLAGS += -g -O0 -DEBUG
+else
+	CXXFLAGS += -O3 -DNDEBUG
+endif
+
+#CXXFLAGS=-I../common -Iobjs/ -O3 -Wall
 
 
 APP_NAME=kmeans
